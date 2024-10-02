@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="../bootstrap_5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../fontawesome-free-6.5.2-web/css/all.min.css">
+	<link rel="shortcut icon" type="image/png" href="../img/icon.jpg"/>
+</head>
+<body>
+<div class="container w-50">
+<a href="/hoctu"><button class="btn btn-primary">Bỏ Qua</button></a>
+<a href="/"><button class="btn btn-primary">Home</button></a>
+  <h3 th:text="${kqtrue}" class="text-success"></h3>
+   <h3 th:text="${kqfalse}" class="text-danger"></h3>
+ <h1 th:text="${word.vietnamese}"></h1>
+ <h1 class ="an" style="display: none" th:text="${word.english}"></h1>
+ 
+ <form action="/kiemtrahoc" method="post">
+ 
+ <input type="hidden" th:field="*{word.id}" placeholder="Name" />
+ 
+    <input type="hidden" th:field="*{word.english}" placeholder="Name" />
+
+
+    <input type="hidden" th:field="*{word.vietnamese}" placeholder="Age" />
+    
+       
+     <input type="hidden" th:field="*{word.phienamx}" placeholder="Age" />
+
+    
+    <input type="hidden" th:field="*{word.newdate}" placeholder="Email" />
+
+    
+    <input type="text" class="form-control" name="extraInput" placeholder="Extra Input" autofocus autocomplete="off"/>
+
+    <button type="submit" class="btn btn-primary col-3">Submit</button>
+</form>
+
+ </div>
+ <button class="btn btn-primary" id="showall">Kiểm Tra Kết Quả</button>
+ 	<script type="text/javascript">
+		const myButton = document.getElementById('showall');
+		const myclass = document.getElementsByClassName("an");
+		myButton.addEventListener('click', function() {
+			for (let i = 0; i < myclass.length; i++) {
+				myclass[i].style.display = 'table-cell';
+			}
+		});
+	</script>
+	
+</body>
+</html>

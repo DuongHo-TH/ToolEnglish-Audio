@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="../bootstrap_5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../fontawesome-free-6.5.2-web/css/all.min.css">
+	<link rel="shortcut icon" type="image/png" href="../img/icon.jpg"/>
+</head>
+<body>
+	<a href="/"><button class="btn btn-primary">Home</button></a>
+	<table class="table ">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Nhập Từ</th>
+				<th scope="col">Vietnamese</th>
+				<th scope="col">English</th>
+				<th scope="col">Phiên Âm</th>
+			</tr>
+		</thead>
+		<tbody th:each="item : ${item}">
+			<tr>
+				<td><input name="answer" type="text"></td>
+				<td class="an" style="display: none" th:text="${item.english}"></td>
+				<td th:text="${item.vietnamese}"></td>
+				
+				<td class="an" style="display: none" th:text="${item.phienam}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btn btn-primary" id="showall">Kiểm Tra Kết Quả</button>
+	<script type="text/javascript">
+		const myButton = document.getElementById('showall');
+		const myclass = document.getElementsByClassName("an");
+		myButton.addEventListener('click', function() {
+			for (let i = 0; i < myclass.length; i++) {
+				myclass[i].style.display = 'table-cell';
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>List Word</title>
+<link rel="stylesheet" href="../bootstrap_5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../fontawesome-free-6.5.2-web/css/all.min.css">
+	<link rel="shortcut icon" type="image/png" href="../img/icon.jpg"/>
+</head>
+<body>
+<a href="/"><button class="btn btn-primary">Home</button></a>
+	<a href="/testtu"><button class="btn btn-primary">Ôn Luyện
+			Từ Đã Được Học</button></a>
+	<a href="/testalldialogue"><button class="btn btn-primary">Ôn Luyện Câu, Ngữ Pháp</button></a>
+	<a href="/testnewdialogue"><button class="btn btn-primary">Học Câu, Ngữ Pháp Mới</button></a>
+	
+	<div class="container w-50 mt-5 ">
+		<form action="/addnewdialogue"
+			class="text-center form-control bg-secondary text-white"
+			method="post">
+			<h1>Create New Dialogue</h1>
+			<div class="input-group flex-nowrap pb-3">
+				<span class="input-group-text" id="addon-wrapping"><i
+					class="fa-solid fa-user"></i></span> <input type="text" name="English"
+					class="form-control" placeholder="English" aria-label="Username"
+					aria-describedby="addon-wrapping">
+			</div>
+
+			<div class="input-group flex-nowrap pb-3">
+				<span class="input-group-text" id="addon-wrapping"><i
+					class="fa-solid fa-lock"></i></span> <input type="text" name="Vietnamese"
+					class="form-control" placeholder="Vietnamese" aria-label="Username"
+					aria-describedby="addon-wrapping">
+			</div>
+			<button class="btn btn-primary pb-3 mb-5" type="submit">Create
+			</button>
+			<button class="btn btn-primary pb-3 mb-5" type="reset">Cancel
+			</button>
+
+		</form>
+	</div>
+	<table class="table ">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">English</th>
+				<th scope="col">Vietnamese</th>
+				<th scope="col">Date Add</th>
+				<th scope="col">Active</th>
+			</tr>
+		</thead>
+		<tbody th:each="item : ${items}">
+
+			<tr>
+				<td th:text="${item.id}"></td>
+				<td th:text="${item.english}"></td>
+				<td th:text="${item.vietnamese}"></td>
+				<td th:text="${item.newdate}"></td>
+				<td><a th:href="@{/editword(id=${item.id})}" target="blank"><i
+						class="fa-solid fa-pen-to-square"></i></a></td>
+			</tr>
+
+
+
+		</tbody>
+	</table>
+
+</body>
+</html>
