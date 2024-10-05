@@ -73,6 +73,7 @@
 				<th scope="col">Loại Từ</th>
 				<th scope="col">Âm Thanh</th>
 				<th scope="col">Date Add</th>
+				<th scope="col">Đã Học</th>
 				<th scope="col">Active</th>
 			</tr>
 		</thead>
@@ -88,6 +89,7 @@
 				<source th:src="@{'../audio/' + ${item.amthanh}}" type="audio/mpeg">
 				</audio></td>
 				<td th:text="${item.newdate}"></td>
+				<td th:text="${item.dahoc}"></td>
 				<td><a th:href="@{/editword(id=${item.id})}" target="blank"><i class="fa-solid fa-pen-to-square"></i></a></td>
 			</tr>
 

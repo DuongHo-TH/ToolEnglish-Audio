@@ -130,12 +130,15 @@ public class HomeController {
 	public String luyenTu(Model model, @ModelAttribute NewWord word, @RequestParam("extraInput") String input) {
 		
 		if(input.equalsIgnoreCase(word.getEnglish())) {
-			NewWord newword;
+			NewWord newword = service.findword(i);
 			n = n + 1;
-			if(n > 19) {
-				word.setDahoc("1");
-				service.createnewword(word);
-				i= i + 1;
+			if(n > 199) {
+				List<NewWord> dahoc = service.finddahoc(i);
+				for (NewWord newWord2 : dahoc) {
+					newWord2.setDahoc("1");
+					service.createnewword(word);
+				}
+				i= i + 10;
 				n = 0;
 			do {
 			  newword = service.findword(i);
@@ -145,7 +148,7 @@ public class HomeController {
 			return "LuyenTu";
 			}else {
 				model.addAttribute("kqtrue", "Trả lời Chính Xác, Tiếp Tục Ôn Luyện Nào");
-				model.addAttribute("word", word);
+				model.addAttribute("word", newword);
 				return "LuyenTu";
 			}
 		}else {
@@ -188,9 +191,10 @@ public class HomeController {
 	
 
     @GetMapping("/editword")
-    public String editword(Model model,@RequestParam("id") int id) {
-    	
-    	model.addAttribute("word", service.findById(id));
-    	return "UpdateWord";
+    public String editword(Model model,@RequestParam("id")int id) {
+    	NewWord word =  service.findById(id);
+    	word.setDahoc("1");
+    	service.createnewword(word);
+    	return  "redirect:/testluyentu";
     }
 }

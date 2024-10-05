@@ -26,15 +26,30 @@ public class NewWordService  {
   public List<NewWord> findall(){
 	 return newdao.findAll();
   }
+  public List<NewWord> finddahoc(int n){
+	  int m = n+9;
+		 return newdao.findlistdahoc(n,m);
+	  }
   public NewWord findnewword() {
-	  int n = newdao.findAll().size();
+	  int n = newdao.findlistdahoc().size();
 	  Random random = new Random();
 	  int id = random.nextInt(n);
-	  return newdao.findById(id).orElse(null);
+	  return newdao.findbyiddahoc(id);
   }
   public NewWord findword(int n) {
-	  int id = n;
-	  return newdao.findById(id).orElse(null);
+	  int size = newdao.findAll().size();
+	  int id;
+	  if(size > n+10) {
+	    Random random = new Random();
+	     id = random.nextInt(10) + n;
+	    return newdao.findbyidchuahoc(id);
+	  }else {
+		 n =  n + (size - n);
+		  Random random = new Random();
+		     id = random.nextInt(10) + n;
+		return newdao.findbyidchuahoc(id);
+	  }
+	  
   }
   public NewWord findById(int id) {
 	  return newdao.findById(id).orElse(null);
