@@ -17,6 +17,8 @@ public class NewWord {
 	private int id;
 	private String english;
 	@Column(columnDefinition = "nvarchar(250)")
+	private String dialogue;
+	@Column(columnDefinition = "nvarchar(250)")
 	private String vietnamese;
 	@Column(columnDefinition = "nvarchar(250)")
 	private String phienam;
@@ -30,6 +32,14 @@ public class NewWord {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getDialogue() {
+		return dialogue;
+	}
+
+	public void setDialogue(String dialogue) {
+		this.dialogue = dialogue;
 	}
 
 	public String getPhienam() {
@@ -96,9 +106,10 @@ public class NewWord {
 		super();
 	}
 
-	public NewWord(String english, String vietnamese, String phienam, String loaitu, String amthanh) {
+	public NewWord(String english, String dialogue, String vietnamese, String phienam, String loaitu, String amthanh) {
 		super();
 		this.english = english;
+		this.dialogue = dialogue;
 		this.vietnamese = vietnamese;
 		this.phienam = phienam;
 		this.loaitu = loaitu;

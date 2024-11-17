@@ -15,16 +15,23 @@
 		<thead class="table-dark">
 			<tr>
 				<th scope="col">Nhập Từ</th>
+				<th scope="col">Loại Từ</th>
 				<th scope="col">Vietnamese</th>
-				<th scope="col">English</th>
-				<th scope="col">Phiên Âm</th>
+				<th class="an" style="display: none" scope="col">English</th>
+				<th  scope="col">Phiên Âm</th>
+				<th class="an" style="display: none" scope="col">Phiên Âm</th>
 			</tr>
 		</thead>
 		<tbody th:each="item : ${item}">
 			<tr>
 				<td><input name="answer" type="text"></td>
 				<td class="an" style="display: none" th:text="${item.english}"></td>
+				<td th:text="${item.loaitu}"></td>
 				<td th:text="${item.vietnamese}"></td>
+				
+				<td><audio controls style="width: 200px; height: 25px">
+				<source th:src="@{'../audio/' + ${item.amthanh}}" type="audio/mpeg">
+				</audio></td>				
 				
 				<td class="an" style="display: none" th:text="${item.phienam}"></td>
 			</tr>

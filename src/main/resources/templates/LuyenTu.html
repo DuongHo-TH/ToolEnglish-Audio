@@ -16,16 +16,22 @@
 		<h3 th:text="${kqtrue}" class="text-success"></h3>
 		<h3 th:text="${kqfalse}" class="text-danger"></h3>
 		<h1 th:text="${word.vietnamese}"></h1>
+		<h1 th:text="${word.dialogue}" class="text-success"></h1>
 		<h1 th:text="${word.loaitu}" class="text-warning"></h1>
 		<h1 class="an text-danger" style="display: none"
-			th:text="${word.english}"></h1>
-		<audio controls style="width: 500px; height: 50px;">
+			th:text="${word.english}"></h1> 
+			<br>
+			<h1 class="an text-success" style="display: none"
+			th:text="${word.phienam}"></h1>
+		<audio controls autoplay="autoplay" style="width: 500px; height: 50px;">
 			<source th:src="@{'../audio/' + ${word.amthanh}}" type="audio/mpeg">
 		</audio>
 		<form action="/checkluyentu" method="post">
 
 			<input type="hidden" th:field="*{word.id}" /> <input type="hidden"
-				th:field="*{word.english}" /> <input type="hidden"
+				th:field="*{word.english}" />
+				<input type="hidden"
+				th:field="*{word.dialogue}" /> <input type="hidden"
 				th:field="*{word.vietnamese}" /> <input type="hidden"
 				th:field="*{word.phienam}" /> <input type="hidden"
 				th:field="*{word.newdate}" /> <input type="hidden"

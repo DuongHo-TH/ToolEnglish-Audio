@@ -16,6 +16,7 @@
  <a href="/testtu"><button class="btn btn-primary">Ôn Luyện Từ Đã Được Học</button></a> 
   <a href="/allword"><button class="btn btn-danger">Ôn Luyện Tất Cả Từ Đã Được Học</button></a>
 <a href="/hocenglish"><button class="btn btn-warning">Học English</button></a>
+<a href="/Irregular"><button class="btn btn-secondary">Irregular Verbs</button></a>
 <a href="/alldialogue"><button class="btn btn-warning">List Dialogue</button></a>
 <a href="createnewdialogue"><button class="btn btn-warning">Create New Dialogue</button></a>
 <div class="container w-50 mt-5 ">
@@ -27,6 +28,13 @@
 				<span class="input-group-text" id="addon-wrapping"><i
 					class="fa-solid fa-user"></i></span> <input type="text" name="English"
 					class="form-control" placeholder="English" aria-label="Username"
+					aria-describedby="addon-wrapping">
+			</div>
+			
+			<div class="input-group flex-nowrap pb-3">
+				<span class="input-group-text" id="addon-wrapping"><i
+					class="fa-solid fa-lock"></i></span> <input type="text" name="dialogue"
+					class="form-control" placeholder="Dialogue" aria-label="Username"
 					aria-describedby="addon-wrapping">
 			</div>
 
@@ -68,6 +76,7 @@
 			<tr>
 				<th scope="col">ID</th>
 				<th scope="col">English</th>
+				<th scope="col">Dialogue</th>
 				<th scope="col">Phiên Âm</th>
 				<th scope="col">Vietnamese</th>
 				<th scope="col">Loại Từ</th>
@@ -82,6 +91,7 @@
 			<tr>
 				<td th:text="${item.id}"></td>
 				<td th:text="${item.english}"></td>
+				<td th:text="${item.dialogue}"></td>
 				<td th:text="${item.phienam}"></td>
 				<td th:text="${item.vietnamese}"></td>
 				<td th:text="${item.loaitu}"></td>
@@ -90,7 +100,10 @@
 				</audio></td>
 				<td th:text="${item.newdate}"></td>
 				<td th:text="${item.dahoc}"></td>
-				<td><a th:href="@{/editword(id=${item.id})}" target="blank"><i class="fa-solid fa-pen-to-square"></i></a></td>
+				<td>
+				<a th:href="@{/editword(id=${item.id})}"><i class="fa-solid fa-check"></i></a> 
+				<a th:href="@{/updateword(id=${item.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+				</td>
 			</tr>
 
 

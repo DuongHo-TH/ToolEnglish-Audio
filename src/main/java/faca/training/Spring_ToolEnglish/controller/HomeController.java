@@ -27,7 +27,7 @@ import faca.training.Spring_ToolEnglish.service.NewWordService;
 public class HomeController {
 	int n = 0;
 	int i = 0;
-	private final String audio = "D:\\JAVA Spring Boot\\Tool-English\\src\\main\\resources\\static\\audio";
+	private final String audio = "D:\\Spring-Boot\\ToolEnglish-Audio\\src\\main\\resources\\static\\audio";
 	@Autowired
 	private NewWordService service;
 
@@ -58,32 +58,6 @@ public class HomeController {
 		return "Home";
 	}
 	
-	@GetMapping("/hoctu")
-		public String hoctu(Model model) {
-		NewWord word;
-		do {
-		  word = service.findbynewdate();
-		}while(word == null);
-		model.addAttribute("word", word);
-		return "HocTu";
-		}
-	
-	@PostMapping("/kiemtrahoc")
-	public String kiemtrahoc(Model model, @ModelAttribute NewWord word, @RequestParam("extraInput") String input) {
-		if(input.equalsIgnoreCase(word.getEnglish())) {
-			NewWord newword;
-			do {
-			  newword = service.findbynewdate();
-			}while(newword == null);
-			model.addAttribute("kqtrue", "Trả lời Chính Xác, Tiếp Tục Ôn Luyện Nào");
-			model.addAttribute("word", newword);
-			return "HocTu";
-		}else {
-			model.addAttribute("word", word);
-			model.addAttribute("kqfalse", "Kiểm Tra Đáp Án Sai Kiểm Tra Lại");
-			return "HocTu";
-		}
-	}
 	@GetMapping("/createnewword")
 	public String createNewWord() {
 		return "/CreateNewWord";
@@ -136,7 +110,7 @@ public class HomeController {
 				List<NewWord> dahoc = service.finddahoc(i);
 				for (NewWord newWord2 : dahoc) {
 					newWord2.setDahoc("1");
-					service.createnewword(word);
+					service.createnewword(newWord2);
 				}
 				i= i + 10;
 				n = 0;
@@ -185,7 +159,7 @@ public class HomeController {
 	
 	@GetMapping("/allword")
 	public String allword(Model model) {
-		model.addAttribute("item", service.findvietnamese());
+		model.addAttribute("item", service.showlistdahoc());
 		return "KiemTra";
 	}
 	
@@ -196,5 +170,11 @@ public class HomeController {
     	word.setDahoc("1");
     	service.createnewword(word);
     	return  "redirect:/testluyentu";
+    }
+    @GetMapping("/updateword")
+    public String updateword(Model model,@RequestParam("id")int id) {
+    	NewWord word =  service.findById(id);
+        model.addAttribute("word", word);
+        return  "/UpdateWord";
     }
 }
